@@ -1,5 +1,5 @@
 {
-	"name": "blueweb/newrelic-logger",
+	"name": "blueweb/newrelic-nette",
 	"type": "library",
 	"keywords": ["nette", "newrelic", "new relic", "logger"],
 	"license": ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
