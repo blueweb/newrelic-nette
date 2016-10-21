@@ -20,7 +20,7 @@ class NewRelicLoggerExtension extends Nette\DI\CompilerExtension
 
 		if ($builder->expand($config['enabled'])) {
 			$builder->addDefinition($this->prefix('listener'))
-				->setClass('Mishak\NewRelicLogger\NewRelicProfilingListener')
+				->setClass('Blueweb\NewRelicLogger\NewRelicProfilingListener')
 				->addTag(Kdyby\Events\DI\EventsExtension::TAG_SUBSCRIBER);
 		}
 	}
