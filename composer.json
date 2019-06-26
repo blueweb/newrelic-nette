@@ -1,8 +1,18 @@
 {
 	"name": "blueweb/newrelic-nette",
 	"type": "library",
-	"keywords": ["nette", "newrelic", "new relic", "logger"],
-	"license": ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
+	"description": "",
+	"keywords": [
+		"nette",
+		"newrelic",
+		"new relic",
+		"logger"
+	],
+	"license": [
+		"BSD-3-Clause",
+		"GPL-2.0",
+		"GPL-3.0"
+	],
 	"authors": [
 		{
 			"name": "Filip Procházka",
@@ -22,9 +32,9 @@
 		"issues": "https://github.com/blueweb/newrelic-nette/issues"
 	},
 	"require": {
-		"php": ">=5.3.2",
-		"nette/nette": ">=2.3.0",
-		"kdyby/events": ">=2.4.0"
+		"php": ">=7.3",
+		"nette/nette": "~2.4",
+		"kdyby/events": "~3.1"
 	},
 	"autoload": {
 		"psr-0": {

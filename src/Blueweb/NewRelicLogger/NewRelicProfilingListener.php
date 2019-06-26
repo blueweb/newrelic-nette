@@ -9,8 +9,10 @@ use Nette\Application\Request;
 use Tracy\Debugger;
 use Tracy\Logger;
 
-class NewRelicProfilingListener extends Nette\Object implements Kdyby\Events\Subscriber
+class NewRelicProfilingListener implements Kdyby\Events\Subscriber
 {
+
+	use Nette\SmartObject;
 
 	public function getSubscribedEvents()
 	{
