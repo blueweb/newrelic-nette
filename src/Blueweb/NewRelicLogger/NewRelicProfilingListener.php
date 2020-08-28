@@ -59,7 +59,11 @@ class NewRelicProfilingListener implements Kdyby\Events\Subscriber
 	}
 
 
-	public function onError(Application $app, \Exception $e)
+	/**
+	 * @param Application $app
+	 * @param \Exception|\Error $e
+	 */
+	public function onError(Application $app, $e)
 	{
 		if (!extension_loaded('newrelic')) {
 			return;
