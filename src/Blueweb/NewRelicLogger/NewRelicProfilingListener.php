@@ -29,14 +29,6 @@ class NewRelicProfilingListener implements Kdyby\Events\Subscriber
 		if (!extension_loaded('newrelic')) {
 			return;
 		}
-
-		$oldLogger = Debugger::getLogger();
-
-		$logger = new Logger($oldLogger->directory, $oldLogger->email);
-		$logger->emailSnooze = $oldLogger->emailSnooze;
-		$logger->mailer = $oldLogger->mailer;
-
-		Debugger::setLogger($logger);
 	}
 
 
