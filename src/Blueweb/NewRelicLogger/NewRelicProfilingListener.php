@@ -57,7 +57,7 @@ class NewRelicProfilingListener extends Nette\Object implements Kdyby\Events\Sub
 	}
 
 
-	public function onError(Application $app, \Exception $e)
+	public function onError(Application $app, \Throwable $e)
 	{
 		if (!extension_loaded('newrelic')) {
 			return;
