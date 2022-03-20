@@ -15,16 +15,18 @@
 	],
 	"authors": [
 		{
-			"name": "Filip Procházka",
-			"homepage": "http://filip-prochazka.com"
+			"name": "Filip Procházka"
 		},
 		{
-			"name": "Michal Gebauer",
-			"homepage": "http://mishak.net"
+			"name": "Michal Gebauer"
 		},
 		{
 			"name": "Jakub Jarabica",
-			"homepage": "http://jakubjarabica.com/"
+			"email": "jakub@blueweb.sk"
+		},
+		{
+			"name": "Milan Sedlák",
+			"email": "milan@blueweb.sk"
 		}
 	],
 	"support": {
@@ -32,9 +34,9 @@
 		"issues": "https://github.com/blueweb/newrelic-nette/issues"
 	},
 	"require": {
-		"php": ">=7.3",
-		"nette/nette": "~2.4",
-		"kdyby/events": "~3.1"
+		"php": ">=7.2",
+		"nette/nette": "~3.0",
+		"kdyby/events": "^5.0"
 	},
 	"autoload": {
 		"psr-0": {

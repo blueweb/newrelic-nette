@@ -2,24 +2,23 @@
 
 namespace Blueweb\NewRelicLogger;
 
-use Nette;
-use Tracy;
+use Tracy\Logger as TracyLogger;
 
-class Logger extends Tracy\Logger
+class Logger extends TracyLogger
 {
-
-	public function log($message, $priority = self::INFO)
+	public function log($message, $priority = self::INFO): ?string
 	{
 		$res = parent::log($message, $priority);
 
-		if ($priority === self::ERROR || $priority === self::CRITICAL) {
-			if (is_array($message)) {
-				$message = implode(' ', $message);
+		if (extension_loaded('newrelic')) {
+			if ($priority === self::ERROR || $priority === self::CRITICAL) {
+				if (is_array($message)) {
+					$message = implode(' ', $message);
+				}
+				newrelic_notice_error($message);
 			}
-			newrelic_notice_error($message);
 		}
 
 		return $res;
 	}
-
 }

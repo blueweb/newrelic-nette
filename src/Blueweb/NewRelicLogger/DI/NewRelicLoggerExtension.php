@@ -2,35 +2,30 @@
 
 namespace Blueweb\NewRelicLogger\DI;
 
-use Kdyby;
-use Nette;
+use Kdyby\Events\DI\EventsExtension;
+use Nette\DI\CompilerExtension;
+use Nette\Schema\Expect;
+use Nette\Schema\Schema;
 
-class NewRelicLoggerExtension extends Nette\DI\CompilerExtension
+class NewRelicLoggerExtension extends CompilerExtension
 {
+	public function getConfigSchema(): Schema
+	{
+		$parameters = $this->getContainerBuilder()->parameters;
+		$debugMode = $parameters['debugMode'] ?? FALSE;
+
+		return Expect::structure([
+			'enabled' => Expect::bool($debugMode),
+		]);
+	}
 
 	public function loadConfiguration()
 	{
 		$builder = $this->getContainerBuilder();
-
-		$config = $this->getConfig(array(
-			'enabled' => !$builder->expand('%debugMode%')
-		));
-
-		Nette\Utils\Validators::assertField($config, 'enabled');
-
-		if ($builder->expand($config['enabled'])) {
+		if ($this->config->enabled) {
 			$builder->addDefinition($this->prefix('listener'))
-				->setClass('Blueweb\NewRelicLogger\NewRelicProfilingListener')
-				->addTag(Kdyby\Events\DI\EventsExtension::TAG_SUBSCRIBER);
+				->setType('Blueweb\NewRelicLogger\NewRelicProfilingListener')
+				->addTag(EventsExtension::TAG_SUBSCRIBER);
 		}
 	}
-
-
-	public static function register(Nette\Configurator $configurator)
-	{
-		$configurator->onCompile[] = function ($config, Nette\DI\Compiler $compiler) {
-			$compiler->addExtension('newRelic', new NewRelicLoggerExtension);
-		};
-	}
-
 }

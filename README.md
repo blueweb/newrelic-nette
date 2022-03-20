@@ -8,17 +8,15 @@ Requirements
 
 blueweb/newrelic-nette requires PHP 5.3.2 or higher.
 
-- [Nette Framework >= 2.3.0](https://github.com/nette/nette)
-- [Kdyby Events >= 2.4.0](https://github.com/kdyby/events)
-
+Another requirement is **kdyby/events** package.
 
 Installation
 ------------
 
-The best way to install blueweb/NewRelic-Nette is using [Composer](http://getcomposer.org/):
+The best way to install blueweb/newrelic-nette is using [Composer](http://getcomposer.org/):
 
 ```sh
-$ composer require blueweb/newrelic-nette:@dev
+$ composer require blueweb/newrelic-nette
 ```
 -----
 
