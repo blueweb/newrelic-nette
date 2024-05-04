@@ -1,23 +1,32 @@
-blueweb/newrelic-nette
-==========================
+New Relic integration for Nette Framework
+=========================================
 
-Most of code is based on [article](http://filip-prochazka.com/blog/newrelic-monitoring-aplikace-na-nette-frameworku) by [Filip Procházka](https://github.com/hosiplan) @ [Mishak's extension](https://github.com/mishak87/newrelic-nette).
+Repository [https://github.com/blueweb/newrelic-nette](https://github.com/blueweb/newrelic-nette).
 
-Requirements
-------------
+## Requirements
 
-blueweb/newrelic-nette requires PHP 5.3.2 or higher.
+Library `blueweb/newrelic-nette` requires PHP 7.4 or higher.
 
-Another requirement is **kdyby/events** package.
+It also required `kdyby/events` package.
 
-Installation
-------------
+## Installation
 
 The best way to install blueweb/newrelic-nette is using [Composer](http://getcomposer.org/):
 
-```sh
+```bash
 $ composer require blueweb/newrelic-nette
 ```
------
 
-Repository [https://github.com/blueweb/newrelic-nette](https://github.com/blueweb/newrelic-nette).
+You have to also add this to your `config.neon`:
+
+```yaml
+extensions:
+	newrelic: Blueweb\NewRelic\DI\DiExtension
+```
+
+You can also manually disable the extension:
+
+```yaml
+newrelic:
+	enable: false # default is true
+```

@@ -1,7 +1,7 @@
 {
 	"name": "blueweb/newrelic-nette",
 	"type": "library",
-	"description": "",
+	"description": "New Relic integration into Nette Framework",
 	"keywords": [
 		"nette",
 		"newrelic",
@@ -15,12 +15,6 @@
 	],
 	"authors": [
 		{
-			"name": "Filip Procházka"
-		},
-		{
-			"name": "Michal Gebauer"
-		},
-		{
 			"name": "Jakub Jarabica",
 			"email": "jakub@blueweb.sk"
 		},
@@ -30,17 +24,21 @@
 		}
 	],
 	"support": {
-		"email": "jakub@blueweb.sk",
+		"email": "devs@blueweb.sk",
 		"issues": "https://github.com/blueweb/newrelic-nette/issues"
 	},
 	"require": {
-		"php": ">=7.2",
-		"nette/nette": "~3.0",
-		"kdyby/events": "^5.0"
+		"php": ">=7.4",
+		"kdyby/events": "^5.0",
+		"nette/application": "~3.0",
+		"nette/di": "~3.0"
+	},
+	"require-dev": {
+		"phpstan/phpstan": "*"
 	},
 	"autoload": {
-		"psr-0": {
-			"Blueweb\\NewRelicLogger\\": "src/"
+		"psr-4": {
+			"Blueweb\\NewRelic\\": "src/"
 		}
 	}
 }

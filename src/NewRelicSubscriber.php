@@ -1,6 +1,6 @@
 <?php
 
-namespace Blueweb\NewRelicLogger;
+namespace Blueweb\NewRelic;
 
 use Kdyby\Events\Subscriber;
 use Nette\Application\Application;
@@ -9,28 +9,25 @@ use Nette\Application\Request;
 use Nette\SmartObject;
 use Throwable;
 
-class NewRelicProfilingListener implements Subscriber
+class NewRelicSubscriber implements Subscriber
 {
 	use SmartObject;
 
+	/**
+	 * @return string[]
+	 */
 	public function getSubscribedEvents(): array
 	{
 		return [
-			'Nette\\Application\\Application::onStartup',
-			'Nette\\Application\\Application::onRequest',
-			'Nette\\Application\\Application::onError',
+			Application::class . '::onRequest',
+			Application::class . '::onError',
 		];
 	}
 
-	public function onStartup(Application $app): void
-	{
-		if (!extension_loaded('newrelic')) {
-			return;
-		}
-	}
-
-	public function onRequest(Application $app, Request $request): void
-	{
+	public function onRequest(
+		Application $application,
+		Request $request
+	): void {
 		if (!extension_loaded('newrelic')) {
 			return;
 		}
@@ -40,7 +37,7 @@ class NewRelicProfilingListener implements Subscriber
 			$jobParams = implode(' ', array_slice($_SERVER['argv'], 1));
 
 			newrelic_name_transaction('$ ' . $jobName . ' ' . $jobParams);
-			newrelic_background_job(TRUE);
+			newrelic_background_job();
 
 			return;
 		}
@@ -52,8 +49,10 @@ class NewRelicProfilingListener implements Subscriber
 		newrelic_name_transaction($presenter . $action);
 	}
 
-	public function onError(Application $app, Throwable $e): void
-	{
+	public function onError(
+		Application $application,
+		Throwable $e
+	): void {
 		if (!extension_loaded('newrelic')) {
 			return;
 		}
