@@ -5,9 +5,7 @@ Repository [https://github.com/blueweb/newrelic-nette](https://github.com/bluewe
 
 ## Requirements
 
-Library `blueweb/newrelic-nette` requires PHP 7.4 or higher.
-
-It also required `kdyby/events` package.
+Library `blueweb/newrelic-nette` requires PHP 8.0 or higher.
 
 ## Installation
 
@@ -24,9 +22,10 @@ extensions:
 	newrelic: Blueweb\NewRelic\DI\DiExtension
 ```
 
-You can also manually disable the extension:
+Extension is automatically disabled in development environment.
+You can also manually enable/disable the extension:
 
 ```yaml
 newrelic:
-	enable: false # default is true
+	enable: false
 ```

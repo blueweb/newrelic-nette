@@ -2,28 +2,13 @@
 
 namespace Blueweb\NewRelic;
 
-use Kdyby\Events\Subscriber;
 use Nette\Application\Application;
 use Nette\Application\BadRequestException;
 use Nette\Application\Request;
-use Nette\SmartObject;
 use Throwable;
 
-class NewRelicSubscriber implements Subscriber
+class NewRelicSubscriber
 {
-	use SmartObject;
-
-	/**
-	 * @return string[]
-	 */
-	public function getSubscribedEvents(): array
-	{
-		return [
-			Application::class . '::onRequest',
-			Application::class . '::onError',
-		];
-	}
-
 	public function onRequest(
 		Application $application,
 		Request $request

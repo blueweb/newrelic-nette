@@ -5,8 +5,7 @@
 	"keywords": [
 		"nette",
 		"newrelic",
-		"new relic",
-		"logger"
+		"new relic"
 	],
 	"license": [
 		"BSD-3-Clause",
@@ -28,10 +27,10 @@
 		"issues": "https://github.com/blueweb/newrelic-nette/issues"
 	},
 	"require": {
-		"php": ">=8.0",
-		"kdyby/events": "^5.0",
+		"php": "^8.0",
 		"nette/application": "~3.0",
-		"nette/di": "~3.0"
+		"nette/di": "~3.0",
+		"nette/schema": "~1.0"
 	},
 	"require-dev": {
 		"phpstan/phpstan": "*"

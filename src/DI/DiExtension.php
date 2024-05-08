@@ -3,8 +3,8 @@
 namespace Blueweb\NewRelic\DI;
 
 use Blueweb\NewRelic\NewRelicSubscriber;
-use Kdyby\Events\DI\EventsExtension;
 use Nette\DI\CompilerExtension;
+use Nette\PhpGenerator\ClassType;
 use Nette\Schema\Expect;
 use Nette\Schema\Schema;
 
@@ -17,7 +17,7 @@ class DiExtension extends CompilerExtension
 
 		return Expect::structure(
 			[
-				'enable' => Expect::bool($debugMode),
+				'enable' => Expect::bool(!$debugMode),
 			]
 		);
 	}
@@ -30,8 +30,35 @@ class DiExtension extends CompilerExtension
 
 		if ($config->enable) {
 			$builder->addDefinition($this->prefix('subscriber'))
-				->setType(NewRelicSubscriber::class)
-				->addTag(EventsExtension::TAG_SUBSCRIBER);
+				->setType(NewRelicSubscriber::class);
+		}
+	}
+
+	public function afterCompile(ClassType $class): void
+	{
+		/** @var object{enable:bool} $config */
+		$config = $this->getConfig();
+		$builder = $this->getContainerBuilder();
+
+		if ($config->enable) {
+			$subscriberServiceName = $this->prefix('subscriber');
+			$initialize = $class->getMethod('initialize');
+			$initialize->addBody(
+				$builder->formatPhp(
+					<<<PHP
+\$this->getService(?)->onRequest[] = [\$this->getService(?), ?];
+\$this->getService(?)->onError[] = [\$this->getService(?), ?];
+PHP,
+					[
+						'application',
+						$subscriberServiceName,
+						'onRequest',
+						'application',
+						$subscriberServiceName,
+						'onError',
+					]
+				)
+			);
 		}
 	}
 }
