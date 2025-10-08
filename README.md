@@ -5,7 +5,7 @@ Repository [https://github.com/blueweb/newrelic-nette](https://github.com/bluewe
 
 ## Requirements
 
-Library `blueweb/newrelic-nette` requires PHP 8.0 or higher.
+Library `blueweb/newrelic-nette` requires PHP 7.4 or higher.
 
 ## Installation
 
