@@ -27,7 +27,7 @@
 		"issues": "https://github.com/blueweb/newrelic-nette/issues"
 	},
 	"require": {
-		"php": "^8.0",
+		"php": ">=7.4",
 		"nette/application": "~3.0",
 		"nette/di": "~3.0",
 		"nette/schema": "~1.0"
